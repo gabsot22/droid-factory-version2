@@ -1,69 +1,64 @@
-﻿using System;
+﻿/* Gabe Soto
+ * CIS 237 MW 6:00-8:15pm
+ * 2/19/20
+ * */
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace cis237_assignment4
+namespace cis237_assignment3
 {
+    // To inherit from a class use of a : and then the class name.
+    // These are called parent class, or super class, or base class.
     class JanitorDroid : UtilityDroid
     {
-        // Some protected variables that can be accessed in derived classes
-        protected bool hasTrashCompactor;
-        protected bool hasVacuum;
+        //*****************************
+        //Variable / Backing fields
+        //*****************************
+        private bool trashCompactor;
+        private bool vacuum;
 
-        // Constuctor that takes lots of parameters to create the droid. The base constructor is used to do some of the work
-        public JanitorDroid(string Material, string Color,
-            bool HasToolbox, bool HasComputerConnection, bool HasArm, bool HasTrashCompactor, bool HasVacuum) :
-            base(Material, Color, HasToolbox, HasComputerConnection, HasArm)
-        {
-            // Set the Droid Cost
-            MODEL_COST = 160.00m;
-            // Assign the values that the base constructor is not taking care of.
-            this.hasTrashCompactor = HasTrashCompactor;
-            this.hasVacuum = HasVacuum;
-        }
-
-        // Override the CalculateCostOfOptions method.
-        // Use the base class implementation of the method, and tack on the cost of the new options
-        protected override decimal CalculateCostOfOptions()
-        {
-            decimal optionsCost = 0;
-
-            optionsCost += base.CalculateCostOfOptions();
-
-            if (hasTrashCompactor)
-            {
-                optionsCost += COST_PER_OPTION;
-            }
-
-            if (hasVacuum)
-            {
-                optionsCost += COST_PER_OPTION;
-            }
-
-            return optionsCost;
-        }
-
-        protected override string GetModelToString()
-        {
-            return "Model: Janitor" + Environment.NewLine;
-        }
-
-        // Overridden ToString that uses the base ToString method, and appends the missing information.
+        //******************************
+        //Public Methods
+        //******************************
         public override string ToString()
         {
-            string returnString =
-                base.ToString() +
-                "Has Trash Compactor: " + this.hasTrashCompactor + Environment.NewLine +
-                "Has Vacuum: " + this.hasVacuum + Environment.NewLine;
+            // Ask the parent to do the name, type, material, color part by
+            // calling ToString on the parent/base class
+            return base.ToString();
 
-            if (this.GetType() == typeof(JanitorDroid))
-            {
-                //returnString += Environment.NewLine +
-                //    this.TotalCost.ToString("C") +
-                //    Environment.NewLine;
-            }
+        }
 
-            return returnString;
+        // Added this so that we override the virtual method in the parent.
+        public override void CalculateTotalCost()
+        {
+            totalCost = CalculateBaseCost() + TOOL_BOX_CONST + COMPUTER_CONNECTION_CONST + ARM_CONST + TRASH_COMPACTOR_CONST + VACUUM_CONST;
+        }
+
+        //*****************************
+        //Constructors
+        //*****************************
+        public JanitorDroid(
+            string Name,
+            string Type,
+            string Material,
+            string Color,
+            bool ToolBox,
+            bool ComputerConnection,
+            bool Arm,
+            bool TrashCompactor,
+            bool Vacuum
+        // Call the parent constructor with the base keyword and send it
+        // the name, type, material, and color we just collected from the parameters
+        // above this comment.
+        ) : base(Name, Type, Material, Color, ToolBox, ComputerConnection, Arm)
+        {
+            // No need to set the name, type, material, color variables.
+            // will be handled by the parent/base constructor.
+            this.trashCompactor = TrashCompactor;
+            this.vacuum = Vacuum;
         }
     }
 }

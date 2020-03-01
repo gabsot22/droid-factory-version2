@@ -1,81 +1,66 @@
-﻿using System;
+﻿/* Gabe Soto
+ * CIS 237 MW 6:00-8:15pm
+ * 2/19/20
+ * */
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace cis237_assignment4
+namespace cis237_assignment3
 {
+    // To inherit from a class use of a : and then the class name.
+    // These are called parent class, or super class, or base class.
     class AstromechDroid : UtilityDroid
     {
-        // Protected constant for the cost per ship. Children can access this too.
-        protected decimal COST_PER_SHIP = 45.00m;
+        //*****************************
+        //Variable / Backing fields
+        //*****************************
+        private bool fireExtinquisher;
+        private int numberShips;
 
-        // Class level variables unique to this class. Set as protected so children classes can access them.
-        protected bool hasFireExtinguisher;
-        protected int numberOfShips;
+        private const int costPerShip = 3; 
 
-        // Constructor that uses the Base Constuctor to do most of the work.
-        public AstromechDroid(string Material, string Color,
-            bool HasToolbox, bool HasComputerConnection, bool HasArm, bool HasFireExtinquisher, int NumberOfShips) :
-            base(Material, Color, HasToolbox, HasComputerConnection, HasArm)
-        {
-            // Set the Droid Cost
-            MODEL_COST = 200.00m;
-            // Assign the values for the constructor that are not handled by the base constructor
-            this.hasFireExtinguisher = HasFireExtinquisher;
-            this.numberOfShips = NumberOfShips;
-        }
-
-        // Overridden method to calculate the cost of options. Uses the base class to do some of the calculations
-        protected override decimal CalculateCostOfOptions()
-        {
-            decimal optionsCost = 0;
-
-            optionsCost += base.CalculateCostOfOptions();
-
-            if (hasFireExtinguisher)
-            {
-                optionsCost += COST_PER_OPTION;
-            }
-
-            return optionsCost;
-        }
-
-        // Protected virtual method that can be overriden in child classes.
-        // Caclulates the cost of ships.
-        protected virtual decimal CalculateCostOfShips()
-        {
-            return COST_PER_SHIP * numberOfShips;
-        }
-
-        // Overriden method to calculate the total cost. Uses work from the base class to achive the answer.
-        public override void CalculateTotalCost()
-        {
-            base.CalculateTotalCost();
-
-            this.totalCost += this.CalculateCostOfShips();
-        }
-
-        protected override string GetModelToString()
-        {
-            return "Model: Astromech" + Environment.NewLine;
-        }
-
-        // Overriden ToString method to output the information for this droid. Uses work done in the base class
+        //******************************
+        //Public Methods
+        //******************************
         public override string ToString()
         {
-            string returnString =
-                base.ToString() +
-                "Has Fire Extinguisher: " + this.hasFireExtinguisher + Environment.NewLine +
-                "Number Of Ships: " + this.numberOfShips + Environment.NewLine;
+            // Ask the parent to do the name, type, material, color part by
+            // calling ToString on the parent/base class
+            return base.ToString();
 
-            if (this.GetType() == typeof(AstromechDroid))
-            {
-                //returnString += Environment.NewLine +
-                //    this.TotalCost.ToString("C") +
-                //    Environment.NewLine;
-            }
+        }
 
-            return returnString;
+        // Added this so that we override the virtual method in the parent.
+        public override void CalculateTotalCost()
+        {
+            totalCost = CalculateBaseCost() + TOOL_BOX_CONST + COMPUTER_CONNECTION_CONST + ARM_CONST + FIRE_EXTINGUISHER_CONST + NUMBER_OF_SHIPS_CONST; ;
+        }
+
+        //*****************************
+        //Constructors
+        //*****************************
+        public AstromechDroid(
+            string Name,
+            string Type,
+            string Material,
+            string Color,
+            bool ToolBox,
+            bool ComputerConnection,
+            bool Arm,
+            bool FireExtinquisher,
+            int NumberOfShips
+        // Call the parent constructor with the base keyword and send it
+        // the name, type, material, and color we just collected from the parameters
+        // above this comment.
+        ) : base(Name, Type, Material, Color, ToolBox, ComputerConnection, Arm)
+        {
+            // No need to set the name, type, material, color variables.
+            // will be handled by the parent/base constructor.
+            this.fireExtinquisher = FireExtinquisher;
+            this.numberShips = NumberOfShips;
         }
     }
 }

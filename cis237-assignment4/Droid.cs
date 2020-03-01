@@ -1,137 +1,135 @@
-﻿using System;
+﻿/* Gabe Soto
+ * CIS 237 MW 6:00-8:15pm
+ * 2/19/20
+ * */
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace cis237_assignment4
+namespace cis237_assignment3
 {
     abstract class Droid : IDroid
     {
-        // Constant for Droid Cost. Must be a static variable vs const so it can be assigned to
-        // in the constructor of child classes.
-        protected static decimal MODEL_COST;
+        //*****************************
+        // Constants
+        //*****************************
 
-        // Some protected variables for the class
+        // Additional Options
+        protected const int TOOL_BOX_CONST = 1;
+        protected const int COMPUTER_CONNECTION_CONST = 1;
+        protected const int ARM_CONST = 1;
+        protected const int FIRE_EXTINGUISHER_CONST = 1;
+        protected const int TRASH_COMPACTOR_CONST = 1;
+        protected const int VACUUM_CONST = 1;
+        protected const int NUMBER_OF_SHIPS_CONST = 3;
+        
+        //*****************************
+        // Class level Variables
+        //*****************************
+  
+        // Must be protected so that they are available in the child / derived classes.
+        protected string name;
+
+        protected string type;
+        protected decimal typeCost;
+
         protected string material;
-        protected string color;
+        protected decimal materialCost;
 
+        protected string color;
         protected decimal baseCost;
         protected decimal totalCost;
 
-        // Create a inner class for the sole purpose of acting like a collection of constants
-        public sealed class Materials
+
+        //****************************
+        // Properties
+        //****************************
+        // Public property to get the Name to search for Droid Name
+        public string Name
         {
-            private Materials() {}
-            public const string Carbonite = "Carbonite";
-            public const string Vanadium = "Vanadium";
-            public const string Quadranium = "Quadranium";
-            public const string Tears_Of_A_Jedi = "Tears Of A Jedi";
+            get
+            {
+                return this.name;
+            }
         }
 
-        // Create a inner class for the sole purpose of acting like a collection of constants
-        public sealed class Colors
-        {
-            private Colors() {}
-            public const string White = "White";
-            public const string Red = "Red";
-            public const string Green = "Green";
-            public const string Blue = "Blue";
-        }
-
-        // The public property for TotalCost
-        public decimal TotalCost
+        // Forces child classes to make a TotalCost Property.
+        public virtual decimal TotalCost
         {
             get { return totalCost; }
             set { totalCost = value; }
         }
 
-        // Constructor that takes the main 2 parameters shared amongst all 4 instanceable types of droids
-        public Droid(string Material, string Color)
+        // LOOK AT THE PRICE ABSTRACT DECMAL AND COMPARE!!!!!!!!!!!!!!!!!
+
+        //***************************
+        // Protected Methods
+        //***************************
+        protected decimal CalculateBaseCost()
         {
-            this.material = Material;
-            this.color = Color;
+            // Test input and sets to price
+            if (material == "Iron" || material == "iron")
+            {
+                materialCost = 5;
+            }
+            if (material == "Gold" || material == "gold")
+            {
+                materialCost = 10;
+            }
+            if(material == "Amethyst" || material == "amethyst")
+            {
+                materialCost = 15;
+            }
+            if (type == "Protocol" || type == "protocol")
+            {
+                typeCost = 25;
+            }
+            if (type == "Astromech" || type == "astromech")
+            {
+                typeCost = 50;
+            }
+            if (type == "Utility" || type == "utility")
+            {
+                typeCost = 15;
+            }
+            if (type == "Janitor" || type == "janitor")
+            {
+                typeCost = 5;
+            }
+            // Equation for base cost
+            return typeCost + materialCost; 
         }
 
-        // Virtual method that can be overridden in the derived classes if needed.
-        // This implementation calculates the cost based on the material used for the droid
-        protected virtual void CalculateBaseCost()
-        {
-            baseCost = this.getMaterialCost() + this.getColorCost();
-        }
-
-        // Abstract method that MUST be overriden in the derived class to calculate the total cost
-        public abstract void CalculateTotalCost();
-
-        // Abstract method that MUST be overriden in the derived class to provide the output for the model
-        protected abstract string GetModelToString();
-
-        // Overriden toString method that will return a string representing the basic information for any droid
+        //***************************
+        // Methods
+        //***************************
         public override string ToString()
         {
-            return GetModelToString() +
-                "Material: " + this.material + Environment.NewLine +
-                "Color: " + this.color + Environment.NewLine;
+            return String.Format("{0,-10} {1,-9} {2,-8} {3,-6} {4,-9}",
+                name, type, material, color, CalculateBaseCost().ToString("C"));
+            return name + " " + type + " " + material + " " + color + " " + CalculateBaseCost().ToString("C");
         }
 
-        // Method to get the cost of a certain material.
-        private decimal getMaterialCost()
+
+        // Virtual method for calculating total cost... will be overriden in child classes
+        public virtual void CalculateTotalCost()
         {
-            decimal materialCost;
-
-            switch (this.material)
-            {
-                case Materials.Carbonite:
-                    materialCost = 100.00m;
-                    break;
-
-                case Materials.Vanadium:
-                    materialCost = 120.00m;
-                    break;
-
-                case Materials.Quadranium:
-                    materialCost = 150.00m;
-                    break;
-
-                case Materials.Tears_Of_A_Jedi:
-                    materialCost = 200.00m;
-                    break;
-
-                default:
-                    materialCost = 50.00m;
-                    break;
-            }
-
-            return materialCost;
+            totalCost = CalculateBaseCost();
         }
 
-        // Method to get the cost of a certain color.
-        private decimal getColorCost()
+        //***************************************
+        // Constructor
+        //***************************************
+        public Droid(string Name, string Type, string Material, string Color)
         {
-            decimal colorCost;
-
-            switch (this.color)
-            {
-                case Colors.White:
-                    colorCost = 10.00m;
-                    break;
-
-                case Colors.Red:
-                    colorCost = 20.00m;
-                    break;
-
-                case Colors.Green:
-                    colorCost = 40.00m;
-                    break;
-
-                case Colors.Blue:
-                    colorCost = 50.00m;
-                    break;
-
-                default:
-                    colorCost = 5.00m;
-                    break;
-            }
-
-            return colorCost;
+            this.name = Name;
+            this.type = Type;
+            this.material = Material;
+            this.color = Color;
+            
         }
+        
     }
 }

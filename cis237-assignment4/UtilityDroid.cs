@@ -1,88 +1,67 @@
-﻿using System;
+﻿/* Gabe Soto
+ * CIS 237 MW 6:00-8:15pm
+ * 2/19/20
+ * */
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace cis237_assignment4
+namespace cis237_assignment3
 {
+    // To inherit from a class use of a : and then the class name.
+    // These are called parent class, or super class, or base class.
     class UtilityDroid : Droid
     {
-        // A constant that can be used in this class or any child classes
-        protected const decimal COST_PER_OPTION = 35.00m;
+        //*****************************
+        //Variable / Backing fields
+        //*****************************
+        protected bool toolbox;
+        protected bool computerConnection;
+        protected bool arm;
 
-        // Class level variables that can be used in this class, or any children of this class
-        protected bool hasToolbox;
-        protected bool hasComputerConnection;
-        protected bool hasArm;
-
-        // Constructor that takes the standard parameters, and ones specific to this droid.
-        // Calls the base constructor to do some of the work already written in the droid class.
-        public UtilityDroid(string Material, string Color, bool HasToolbox, bool HasComputerConnection, bool HasArm) :
-            base(Material, Color)
-        {
-            // Set the Droid Cost
-            MODEL_COST = 130.00m;
-            // Assign the values that the base constructor is not taking care of.
-            this.hasToolbox = HasToolbox;
-            this.hasComputerConnection = HasComputerConnection;
-            this.hasArm = HasArm;
-        }
-
-        // Virtual method to calculate the cost of the options. This method can be overridden in child classes
-        // to calculate the cost of options
-        protected virtual decimal CalculateCostOfOptions()
-        {
-            decimal optionsCost = 0;
-
-            if (hasToolbox)
-            {
-                optionsCost += COST_PER_OPTION;
-            }
-
-            if (hasComputerConnection)
-            {
-                optionsCost += COST_PER_OPTION;
-            }
-
-            if (hasArm)
-            {
-                optionsCost += COST_PER_OPTION;
-            }
-
-            return optionsCost;
-        }
-
-        // Overridden method to calculate the total cost. This method uses the base cost from the parent droid class,
-        // and the cost of the options of this class to create the total cost.
-        public override void CalculateTotalCost()
-        {
-            this.CalculateBaseCost();
-
-            this.totalCost = this.baseCost + MODEL_COST + this.CalculateCostOfOptions();
-        }
-
-        protected override string GetModelToString()
-        {
-            return "Model: Utility" + Environment.NewLine;
-        }
-
-        // Overridden ToString method to output the information for this droid.
-        // uses the base ToString method and appends more information to it.
+        //******************************
+        //Public Methods
+        //******************************
         public override string ToString()
         {
-            string returnString =
-                base.ToString() +
-                "Has Tool Box: " + this.hasToolbox + Environment.NewLine +
-                "Has Computer Connection: " + this.hasComputerConnection + Environment.NewLine +
-                "Has Arm: " + this.hasArm + Environment.NewLine;
+            // Calculates total cost
+            CalculateTotalCost();
 
-            if (this.GetType() == typeof(UtilityDroid))
-            {
-                //returnString += Environment.NewLine +
-                //    this.TotalCost.ToString("C") +
-                //    Environment.NewLine;
-            }
+            // Ask the parent to do the name, type, material, color part by
+            // calling ToString on the parent/base class
+            return base.ToString() + " " + totalCost.ToString("C");
 
-            return returnString;
+        }
+
+        // Added this so that we override the virtual method in the parent.
+        public override void CalculateTotalCost()
+        {
+            totalCost = CalculateBaseCost() + TOOL_BOX_CONST + COMPUTER_CONNECTION_CONST + ARM_CONST;
+        }
+
+        //*****************************
+        //Constructors
+        //*****************************
+        public UtilityDroid(
+            string Name,
+            string Type,
+            string Material,
+            string Color,
+            bool ToolBox,
+            bool ComputerConnection,
+            bool Arm
+        // Call the parent constructor with the base keyword and send it
+        // the name, type, material, and color we just collected from the parameters
+        // above this comment.
+        ) : base(Name, Type, Material, Color)
+        {
+            // No need to set the name, type, material, color variables.
+            // will be handled by the parent/base constructor.
+            this.toolbox = ToolBox;
+            this.computerConnection = ComputerConnection;
+            this.arm = Arm;
         }
     }
 }

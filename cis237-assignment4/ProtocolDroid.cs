@@ -1,56 +1,65 @@
-﻿using System;
+﻿/* Gabe Soto
+ * CIS 237 MW 6:00-8:15pm
+ * 2/19/20
+ * */
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace cis237_assignment4
+namespace cis237_assignment3
 {
+    // To inherit from a class use of a : and then the class name.
+    // These are called parent class, or super class, or base class.
     class ProtocolDroid : Droid
     {
-        // Constant for cost per language
-        protected const decimal COST_PER_LANGUAGE = 25.00m;
-        // Private variables unique to this class
-        protected int numberOfLanguages;
+        //*****************************
+        //Variable / Backing fields
+        //*****************************
+        public int numberLanguages;
 
-        // Constructor that takes in the standard parameters, and the number of languages it knows.
-        // The base constructor is called to do the work of assigning the standard parameters
-        public ProtocolDroid(string Material, string Color, int NumberOfLanguages) : base(Material, Color)
-        {
-            // Set the Droid Cost
-            MODEL_COST = 120.00m;
-            // Assign the values that the base constructor is not taking care of.
-            this.numberOfLanguages = NumberOfLanguages;
-        }
+        // Constant
+        private const int costPerLanguage = 2;
 
-        // Overriden abstract method from the droid class.
-        // It calculates the total cost using the baseCost method.
-        public override void CalculateTotalCost()
-        {
-            // Calculate the base cost
-            this.CalculateBaseCost();
-            // Calculate the total cost using the result of the base cost
-            this.totalCost = this.baseCost + MODEL_COST + (numberOfLanguages * COST_PER_LANGUAGE);
-        }
-
-        protected override string GetModelToString()
-        {
-            return "Model: Protocol" + Environment.NewLine;
-        }
-
-        // Override the ToString method to use the base ToString, and append new information to it.
+        //******************************
+        //Public Methods
+        //******************************
         public override string ToString()
         {
-            string returnString =
-                base.ToString() +
-                "Number Of Languages: " + this.numberOfLanguages + Environment.NewLine;
+            // Calculates total cost
+            CalculateTotalCost();
 
-            if (this.GetType() == typeof(ProtocolDroid))
-            {
-                //returnString += Environment.NewLine +
-                //    this.TotalCost.ToString("C") +
-                //    Environment.NewLine;
-            }
-
-            return returnString;
+            // Ask the parent to do the name, type, material, color part by
+            // calling ToString on the parent/base class
+            return base.ToString() + " " + totalCost.ToString("C");
         }
+
+        // Added this so that we override the virtual method in the parent.
+        public override void CalculateTotalCost()
+        {
+            totalCost = CalculateBaseCost() + (numberLanguages * costPerLanguage); 
+        }
+
+        //*****************************
+        //Constructors
+        //*****************************
+        public ProtocolDroid(
+            string Name,
+            string Type,
+            string Material,
+            string Color,
+            int NumberLanguages
+        // Call the parent constructor with the base keyword and send it
+        // the name, type, material, and color we just collected from the parameters
+        // above this comment.
+        ) : base(Name, Type, Material, Color)
+        {
+            // No need to set the name, type, material, color variables.
+            // will be handled by the parent/base constructor.
+            this.numberLanguages = NumberLanguages;
+        }
+
+
     }
 }
