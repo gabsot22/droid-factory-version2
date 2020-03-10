@@ -44,7 +44,7 @@ namespace cis237_assignment3
             int choice = ui.DisplayMenuAndGetResponse();
 
             // While the choice selected is not, continue to do work
-            while (choice != 3)
+            while (choice != 5)
             {
                 switch (choice)
                 {
@@ -174,6 +174,20 @@ namespace cis237_assignment3
                         // Output preloaded Droids
                         ui.Output(outputString);
                         outputString = "";
+                        break;
+
+                    // Categorize by model
+                    case 3:
+                        // Output Categorizing Header
+                        ui.DisplayCategorizingHeader();
+
+                        break;
+
+                    // Sort by Total Cost 
+                    case 4:
+                        // Output Sorting Header
+                        ui.DisplaySortingHeader();
+
                         break;
                 }
                 // Get the new choice of what to do from the user

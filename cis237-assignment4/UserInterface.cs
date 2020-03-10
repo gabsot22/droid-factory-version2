@@ -12,7 +12,7 @@ namespace cis237_assignment3
 {
     class UserInterface
     {
-        const int MAX_MENU_CHOICES = 3;
+        const int MAX_MENU_CHOICES = 4;
 
         //No Variables
         //No Properties
@@ -187,6 +187,23 @@ namespace cis237_assignment3
             Console.ForegroundColor = ConsoleColor.Gray;
         }
 
+        // Display Option 3 Header
+        public void DisplayCategorizingHeader()
+        {
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Categorizing Droids...");
+            Console.ForegroundColor = ConsoleColor.Gray;
+        }
+
+        // Display Option 4 Header
+        public void DisplaySortingHeader()
+        {
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Sorting Droids...");
+            Console.ForegroundColor = ConsoleColor.Gray;
+        }
         // Output for the option 2 
         public void Output(string outputString)
         {
@@ -231,7 +248,9 @@ namespace cis237_assignment3
             Console.WriteLine("What would you like to do?");
             Console.WriteLine("1. Add a new Droid");
             Console.WriteLine("2. Print Droid List");
-            Console.WriteLine("3. Exit");
+            Console.WriteLine("3. Categorize by Model");
+            Console.WriteLine("4. Sort by Total Cost");
+            Console.WriteLine("5. Exit");
         }
 
         // Display the Prompt
