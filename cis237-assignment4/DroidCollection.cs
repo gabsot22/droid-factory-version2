@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cis237_assignment3
+namespace cis237_assignment4
 {
     class DroidCollection : UserInterface
     {
@@ -70,6 +70,43 @@ namespace cis237_assignment3
         
             // Return the return string
             return returnString;
+        }
+
+        public void CategorizeByModel()
+        {
+            // Make instance of Protocol Droids
+            IGenericStack<string> protocolStackList = new GenericStack<string>();
+            // Make instance of Utility Droids
+            IGenericStack<string> utilityStackList = new GenericStack<string>();
+            // Make instance of Janitor Droids
+            IGenericStack<string> janitorStackList = new GenericStack<string>();
+            // Make instance of Astromech Droids
+            IGenericStack<string> astromechStackList = new GenericStack<string>();
+
+            foreach (Droid droid in droids)
+            {
+                if (droids[1] = "Protocol")
+                {
+                    protocolStackList.Push(droid.ToString());
+                }
+
+                if (droids[1] = "Utility")
+                {
+                    protocolStackList.Push(droid.ToString());
+                }
+
+                if (droids[1] = "Janitor")
+                {
+                    protocolStackList.Push(droid.ToString());
+                }
+
+                if (droids[1] = "Astromech")
+                {
+                    protocolStackList.Push(droid.ToString());
+                }
+            }
+
+
         }
     }
 }

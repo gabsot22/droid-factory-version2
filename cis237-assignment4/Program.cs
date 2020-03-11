@@ -30,10 +30,14 @@ namespace cis237_assignment3
             DroidCollection droidCollection = new DroidCollection(droidCollectionSize);
 
             // array to hold pre-loaded droids
-            droids[0] = new ProtocolDroid("C3PO", "Protocol", "Gold", "Gold", 5); //droids[0] = new ProtocolDroid("C3PO", "Protocol", "Gold", "Gold", 35.00m, 45.00m);
+            droids[0] = new ProtocolDroid("C3PO", "Protocol", "Gold", "Gold", 5);
             droids[1] = new UtilityDroid("BD1", "Utility", "Amethyst", "Red", true, true, true);
             droids[2] = new AstromechDroid("R2D2", "Astromech", "Iron", "Blue", true, true, true, true, 1);
             droids[3] = new JanitorDroid("A1Z4", "Janitor", "Iron", "Black", true, true, true, true, true);
+            droids[4] = new ProtocolDroid("P0L0", "Protocol", "Amethyst", "Purple", 3);
+
+
+            //GenericStack genericStack = new GenericStack();
 
 
             // Display the Welcome Message to the user
@@ -180,6 +184,8 @@ namespace cis237_assignment3
                     case 3:
                         // Output Categorizing Header
                         ui.DisplayCategorizingHeader();
+
+                        droidCollection.CategorizeByModel();
 
                         break;
 

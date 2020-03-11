@@ -45,9 +45,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AstromechDroid.cs" />
+    <Compile Include="GenericStack.cs" />
     <Compile Include="Droid.cs" />
     <Compile Include="DroidCollection.cs" />
     <Compile Include="IDroid.cs" />
+    <Compile Include="IGenericStack.cs" />
     <Compile Include="JanitorDroid.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

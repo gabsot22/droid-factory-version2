@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cis237_assignment3
+namespace cis237_assignment4
 {
     class UserInterface
     {
@@ -194,6 +194,7 @@ namespace cis237_assignment3
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Categorizing Droids...");
             Console.ForegroundColor = ConsoleColor.Gray;
+            Console.WriteLine();
         }
 
         // Display Option 4 Header
@@ -203,6 +204,7 @@ namespace cis237_assignment3
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Sorting Droids...");
             Console.ForegroundColor = ConsoleColor.Gray;
+            Console.WriteLine();
         }
         // Output for the option 2 
         public void Output(string outputString)
