@@ -75,34 +75,34 @@ namespace cis237_assignment4
         public void CategorizeByModel()
         {
             // Make instance of Protocol Droids
-            IGenericStack<string> protocolStackList = new GenericStack<string>();
+            IGenericStack<Droid> protocolStackList = new GenericStack<Droid>();
             // Make instance of Utility Droids
-            IGenericStack<string> utilityStackList = new GenericStack<string>();
+            IGenericStack<Droid> utilityStackList = new GenericStack<Droid>();
             // Make instance of Janitor Droids
-            IGenericStack<string> janitorStackList = new GenericStack<string>();
+            IGenericStack<Droid> janitorStackList = new GenericStack<Droid>();
             // Make instance of Astromech Droids
-            IGenericStack<string> astromechStackList = new GenericStack<string>();
+            IGenericStack<Droid> astromechStackList = new GenericStack<Droid>();
 
             foreach (Droid droid in droids)
             {
-                if (droids[1] = "Protocol")
+                if (droid.GetType() == typeof(ProtocolDroid))
                 {
-                    protocolStackList.Push(droid.ToString());
+                    protocolStackList.Push(droid);
                 }
 
-                if (droids[1] = "Utility")
+                if (droid.GetType() == typeof(UtilityDroid))
                 {
-                    protocolStackList.Push(droid.ToString());
+                    protocolStackList.Push(droid);
                 }
 
-                if (droids[1] = "Janitor")
+                if (droid.GetType() == typeof(JanitorDroid))
                 {
-                    protocolStackList.Push(droid.ToString());
+                    protocolStackList.Push(droid);
                 }
 
-                if (droids[1] = "Astromech")
+                if (droid.GetType() == typeof(AstromechDroid))
                 {
-                    protocolStackList.Push(droid.ToString());
+                    protocolStackList.Push(droid);
                 }
             }
 

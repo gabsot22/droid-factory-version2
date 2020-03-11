@@ -14,7 +14,7 @@ namespace cis237_assignment4
     // Can put multiple... <T, F, Bar, Baz>... if needed
     interface IGenericStack<T>
     {
-        void AddToFront(T Data);
+        void Push(T Data);
         void AddToBack(T Data);
         T RemoveFromFront();
         T RemoveFromBack();
