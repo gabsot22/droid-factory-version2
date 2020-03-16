@@ -16,7 +16,7 @@ namespace cis237_assignment4
     {
         void Push(T Data);
         void AddToBack(T Data);
-        T RemoveFromFront();
+        T Pop();
         T RemoveFromBack();
 
         void Display();

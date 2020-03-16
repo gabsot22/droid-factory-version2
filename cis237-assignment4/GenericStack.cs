@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cis237_assignment4
 {
-    class GenericStack<T> : IGenericStack<T>
+    class GenericStack<T>// : IGenericStack<T>
     {
         // Make a inner class called node to represent our node.
         // It can be inner because it will not be used outside this class
@@ -93,7 +93,7 @@ namespace cis237_assignment4
         }
 
         // This has a big O of O(1)
-        public T RemoveFromFront()
+        public T Pop(Droid droid)
         {
             // If the list is empty throw an error
             if (IsEmpty)

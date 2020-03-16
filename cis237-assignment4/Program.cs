@@ -23,6 +23,9 @@ namespace cis237_assignment4
             // Make a new instance of the User Interface class
             UserInterface ui = new UserInterface();
 
+            // Make instance of GenericQueue class
+            GenericQueue queue = new GenericQueue();
+
             //Let's make an array to hold a bunch of instances of the Droid class
             Droid[] droids = new Droid[100];
 
@@ -186,6 +189,8 @@ namespace cis237_assignment4
                         ui.DisplayCategorizingHeader();
 
                         droidCollection.CategorizeByModel();
+
+                        
 
                         break;
 

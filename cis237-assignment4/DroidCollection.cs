@@ -75,37 +75,87 @@ namespace cis237_assignment4
         public void CategorizeByModel()
         {
             // Make instance of Protocol Droids
-            IGenericStack<Droid> protocolStackList = new GenericStack<Droid>();
+            GenericStack<Droid> protocolStackList = new GenericStack<Droid>();
             // Make instance of Utility Droids
-            IGenericStack<Droid> utilityStackList = new GenericStack<Droid>();
+            GenericStack<Droid> utilityStackList = new GenericStack<Droid>();
             // Make instance of Janitor Droids
-            IGenericStack<Droid> janitorStackList = new GenericStack<Droid>();
+            GenericStack<Droid> janitorStackList = new GenericStack<Droid>();
             // Make instance of Astromech Droids
-            IGenericStack<Droid> astromechStackList = new GenericStack<Droid>();
+            GenericStack<Droid> astromechStackList = new GenericStack<Droid>();
 
+            // Pushing Droids
             foreach (Droid droid in droids)
             {
-                if (droid.GetType() == typeof(ProtocolDroid))
+                if (droid != null)
                 {
-                    protocolStackList.Push(droid);
-                }
+                    if (droid.GetType() == typeof(ProtocolDroid))
+                    {
+                        protocolStackList.Push(droid);
 
-                if (droid.GetType() == typeof(UtilityDroid))
-                {
-                    protocolStackList.Push(droid);
-                }
+                    }
 
-                if (droid.GetType() == typeof(JanitorDroid))
-                {
-                    protocolStackList.Push(droid);
-                }
+                    if (droid.GetType() == typeof(UtilityDroid))
+                    {
+                        utilityStackList.Push(droid);
 
-                if (droid.GetType() == typeof(AstromechDroid))
-                {
-                    protocolStackList.Push(droid);
+                    }
+
+                    if (droid.GetType() == typeof(JanitorDroid))
+                    {
+                        janitorStackList.Push(droid);
+                    }
+
+                    if (droid.GetType() == typeof(AstromechDroid))
+                    {
+                        astromechStackList.Push(droid);
+                    }
                 }
             }
+            // Output each stack of Droids
+            protocolStackList.Display();
+            utilityStackList.Display();
+            janitorStackList.Display();
+            astromechStackList.Display();
 
+           
+
+            Queue<Droid> queueDroids = new Queue<Droid>();
+
+            // Pop Droids
+            foreach (Droid droid in droids)
+            {
+                if (droid != null)
+                {
+                    if (droid.GetType() == typeof(ProtocolDroid))
+                    {
+                        protocolStackList.Pop(droid);
+                        //queueDroids.Enqueue(droid);
+
+                    }
+
+                    if (droid.GetType() == typeof(UtilityDroid))
+                    {
+                        utilityStackList.Pop(droid);
+
+                    }
+
+                    if (droid.GetType() == typeof(JanitorDroid))
+                    {
+                        janitorStackList.Pop(droid);
+                    }
+
+                    if (droid.GetType() == typeof(AstromechDroid))
+                    {
+                        astromechStackList.Pop(droid);
+                    }
+
+                }
+                queueDroids.Enqueue(droid);
+                Console.WriteLine("Enqueing");
+                Console.WriteLine(droid);
+            }
+
+            
 
         }
     }
