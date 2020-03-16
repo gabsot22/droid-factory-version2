@@ -93,12 +93,15 @@ namespace cis237_assignment4
         }
 
         // This has a big O of O(1)
-        public T Pop(Droid droid)
+        public T Pop()
         {
             // If the list is empty throw an error
             if (IsEmpty)
             {
-                throw new Exception("List is empty");
+                Console.WriteLine("List is empty");
+                
+                
+                //throw new Exception("List is empty");
             }
 
             // Let's get the data to return 

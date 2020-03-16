@@ -23,21 +23,26 @@ namespace cis237_assignment4
             // Make a new instance of the User Interface class
             UserInterface ui = new UserInterface();
 
-            // Make instance of GenericQueue class
-            GenericQueue queue = new GenericQueue();
+            
 
             //Let's make an array to hold a bunch of instances of the Droid class
-            Droid[] droids = new Droid[100];
+            //Droid[] droids = new Droid[100];
 
             // Create an instance of the DroidCollection class
             DroidCollection droidCollection = new DroidCollection(droidCollectionSize);
 
+            droidCollection.AddNewProtocolDroid("C3PO", "Protocol", "Gold", "Gold", 5);
+            droidCollection.AddNewUtilityDroid("BD1", "Utility", "Amethyst", "Red", true, true, true);
+            droidCollection.AddNewAstromechDroid("R2D2", "Astromech", "Iron", "Blue", true, true, true, true, 1);
+            droidCollection.AddNewJanitorDroid("A1Z4", "Janitor", "Iron", "Black", true, true, true, true, true);
+            droidCollection.AddNewProtocolDroid("P0L0", "Protocol", "Amethyst", "Purple", 3);
+
             // array to hold pre-loaded droids
-            droids[0] = new ProtocolDroid("C3PO", "Protocol", "Gold", "Gold", 5);
-            droids[1] = new UtilityDroid("BD1", "Utility", "Amethyst", "Red", true, true, true);
-            droids[2] = new AstromechDroid("R2D2", "Astromech", "Iron", "Blue", true, true, true, true, 1);
-            droids[3] = new JanitorDroid("A1Z4", "Janitor", "Iron", "Black", true, true, true, true, true);
-            droids[4] = new ProtocolDroid("P0L0", "Protocol", "Amethyst", "Purple", 3);
+            //droids[0] = new ProtocolDroid("C3PO", "Protocol", "Gold", "Gold", 5);
+            //droids[1] = new UtilityDroid("BD1", "Utility", "Amethyst", "Red", true, true, true);
+            //droids[2] = new AstromechDroid("R2D2", "Astromech", "Iron", "Blue", true, true, true, true, 1);
+            //droids[3] = new JanitorDroid("A1Z4", "Janitor", "Iron", "Black", true, true, true, true, true);
+            //droids[4] = new ProtocolDroid("P0L0", "Protocol", "Amethyst", "Purple", 3);
 
 
             //GenericStack genericStack = new GenericStack();
@@ -141,7 +146,7 @@ namespace cis237_assignment4
                     // Print Droid List
                     case 2:
                         // Tests to see if user already added a Droid 
-                        if (validation == true)
+                        if (validation == false)
                         {
                             // Output New Droid heading
                             ui.NewDroidsOutputHeading();
@@ -168,16 +173,16 @@ namespace cis237_assignment4
                         string outputString = "";
 
                         // Loop through all of the droids
-                        foreach (Droid droid in droids)
-                        {
-                            // If the current beverage is not null, concat it to the return string
-                            if (droid != null)
-                            {
-                                //Concat to the outputString
-                                outputString += droid.ToString() +
-                                    Environment.NewLine;
-                            }
-                        }
+                        //foreach (Droid droid in droids)
+                        //{
+                        //    // If the current beverage is not null, concat it to the return string
+                        //    if (droid != null)
+                        //    {
+                        //        //Concat to the outputString
+                        //        outputString += droid.ToString() +
+                        //            Environment.NewLine;
+                        //    }
+                        //}
                         // Output preloaded Droids
                         ui.Output(outputString);
                         outputString = "";
@@ -190,7 +195,9 @@ namespace cis237_assignment4
 
                         droidCollection.CategorizeByModel();
 
-                        
+                        // Make instance of GenericQueue class
+                        GenericQueue queue = new GenericQueue();
+
 
                         break;
 
