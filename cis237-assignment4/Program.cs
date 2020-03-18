@@ -14,19 +14,13 @@ namespace cis237_assignment4
     {
         static void Main(string[] args)
         {
-            // Boolean to see if it should print the heading for new Droid
-            bool validation = false;
+
 
             // Set a constant for the size of the droidCollection
             const int droidCollectionSize = 100;
 
             // Make a new instance of the User Interface class
             UserInterface ui = new UserInterface();
-
-            
-
-            //Let's make an array to hold a bunch of instances of the Droid class
-            //Droid[] droids = new Droid[100];
 
             // Create an instance of the DroidCollection class
             DroidCollection droidCollection = new DroidCollection(droidCollectionSize);
@@ -43,10 +37,6 @@ namespace cis237_assignment4
             //droids[2] = new AstromechDroid("R2D2", "Astromech", "Iron", "Blue", true, true, true, true, 1);
             //droids[3] = new JanitorDroid("A1Z4", "Janitor", "Iron", "Black", true, true, true, true, true);
             //droids[4] = new ProtocolDroid("P0L0", "Protocol", "Amethyst", "Purple", 3);
-
-
-            //GenericStack genericStack = new GenericStack();
-
 
             // Display the Welcome Message to the user
             ui.DisplayWelcomeGreeting();
@@ -79,8 +69,6 @@ namespace cis237_assignment4
 
                             // Display add droid succession
                             ui.DisplayAddDroidItemSuccess();
-                            // Boolean for option 2
-                            validation = true;
                         }
                         if (type == "Utility" || type == "utility")
                         {
@@ -98,7 +86,6 @@ namespace cis237_assignment4
                             // Display add droid succession
                             ui.DisplayAddDroidItemSuccess();
                             // Boolean for option 2
-                            validation = true;
                         }
                         if (type == "Janitor" || type == "janitor")
                         {
@@ -117,8 +104,6 @@ namespace cis237_assignment4
                                                                bool.Parse(newDroidInformation[8]));
                             // Display add droid succession
                             ui.DisplayAddDroidItemSuccess();
-                            // Boolean for option 2
-                            validation = true;
                         }
                         if (type == "Astromech" || type == "astromech")
                         {
@@ -137,17 +122,12 @@ namespace cis237_assignment4
                                                                int.Parse(newDroidInformation[8]));
                             // Display add droid succession
                             ui.DisplayAddDroidItemSuccess();
-                            // Boolean for option 2
-                            validation = true;
 
                         }
                         break;
 
                     // Print Droid List
                     case 2:
-                        // Tests to see if user already added a Droid 
-                        if (validation == false)
-                        {
                             // Output New Droid heading
                             ui.NewDroidsOutputHeading();
 
@@ -156,36 +136,6 @@ namespace cis237_assignment4
 
                             // Output New Droids 
                             ui.Output(droidCollection.ToString());
-                        }
-                        else
-                        {   
-                            // Display error message
-                            ui.DisplayErrorNoNewDroids();
-                        }
-
-                        // Output Pre-Loaded Droid heading
-                        ui.PreLoadedDroidsOutputHeading();
-
-                        // Output Heading again for pre-loaded Droids
-                        ui.DisplayDroidHeader();
-
-                        // Declare a return string
-                        string outputString = "";
-
-                        // Loop through all of the droids
-                        //foreach (Droid droid in droids)
-                        //{
-                        //    // If the current beverage is not null, concat it to the return string
-                        //    if (droid != null)
-                        //    {
-                        //        //Concat to the outputString
-                        //        outputString += droid.ToString() +
-                        //            Environment.NewLine;
-                        //    }
-                        //}
-                        // Output preloaded Droids
-                        ui.Output(outputString);
-                        outputString = "";
                         break;
 
                     // Categorize by model
@@ -193,18 +143,20 @@ namespace cis237_assignment4
                         // Output Categorizing Header
                         ui.DisplayCategorizingHeader();
 
+                        // Output Heading
+                        ui.DisplayDroidHeader();
+
                         droidCollection.CategorizeByModel();
-
-                        // Make instance of GenericQueue class
-                        GenericQueue queue = new GenericQueue();
-
-
                         break;
 
                     // Sort by Total Cost 
                     case 4:
+                        MergeSort merge = new MergeSort();
+
                         // Output Sorting Header
                         ui.DisplaySortingHeader();
+
+                        droidCollection.SendToMerge();
 
                         break;
                 }

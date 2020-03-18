@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cis237_assignment4
 {
-    class GenericStack<T>// : IGenericStack<T>
+    class GenericStack<T>
     {
         // Make a inner class called node to represent our node.
         // It can be inner because it will not be used outside this class

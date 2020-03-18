@@ -91,38 +91,27 @@ namespace cis237_assignment4
                     if (droid.GetType() == typeof(ProtocolDroid))
                     {
                         protocolStackList.Push((ProtocolDroid)droid);
-
                     }
-
                     if (droid.GetType() == typeof(UtilityDroid))
                     {
                         utilityStackList.Push((UtilityDroid)droid);
                     }
-
                     if (droid.GetType() == typeof(JanitorDroid))
                     {
                         janitorStackList.Push((JanitorDroid)droid);
                     }
-
                     if (droid.GetType() == typeof(AstromechDroid))
                     {
                         astromechStackList.Push((AstromechDroid)droid);
                     }
                 }
             }
-            Console.WriteLine("Pushing this");
-            Console.WriteLine("----------------------------");
-            // Output each stack of Droids
-            protocolStackList.Display();
-            utilityStackList.Display();
-            janitorStackList.Display();
-            astromechStackList.Display();
-            Console.WriteLine("----------------------------");
 
+            // Make instance of GenericQueue class
+            GenericQueue queue = new GenericQueue();
 
             // QUEUE DROIDS IN ORDER OF ASTROMECH, JANITOR, UTILITY, PROTOCOL
             Queue<Droid> queueDroids = new Queue<Droid>();
-
             while (!astromechStackList.IsEmpty)
             {
                 queueDroids.Enqueue(astromechStackList.Pop());
@@ -140,45 +129,30 @@ namespace cis237_assignment4
                 queueDroids.Enqueue(protocolStackList.Pop());
             }
 
-            //MergeSort merge = new MergeSort();
-            //merge.Sort(queueDroids);
-
-            int index = 0;
-            // DEQUEUE DROIDS
-            while (queueDroids.Count > 0)
+            // Reset the droid length
+            droidLength = 0;
+            // Dequeue each droid in appropriate list
+            while (queueDroids.Count != 0)
             {
-
-                Console.WriteLine(queueDroids.Dequeue());
-                Console.WriteLine($"Number of Droid's left = {queueDroids.Count}");
-                //Copy dequeue'd droid to exising array with index of 0, then accumulated
-                queueDroids.CopyTo(droids[index]);
-                index++;
+                droids[droidLength] = queueDroids.Dequeue();
+                droidLength++;
             }
 
-            
-
-
-            // Convert Queue into array
-            //Droid[] categorizedDroids = queueDroids.ToArray();
-
-            // Displays values of new array
-            Console.WriteLine();
-            Console.WriteLine("Categorized array:");
-            PrintDroids(droids);
-
-
-
-            //MergeSort merge = new MergeSort();
-            //merge.Sort(queueDroids);
-
+            // Loop through all of the droids
+            foreach (Droid droid in droids)
+            {
+                // If the current beverage is not null, concat it to the return string
+                if (droid != null)
+                {
+                    // Print
+                    Console.WriteLine(droid);
+                }
+            }
         }
-        private static void PrintDroids(Array newdroids)
+
+        public void SendToMerge()
         {
-            foreach(Droid droid in newdroids)
-            {
-                Console.WriteLine("{0}", newdroids);
-            }
+            
         }
     }
-    
 }

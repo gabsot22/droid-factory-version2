@@ -247,6 +247,7 @@ namespace cis237_assignment4
         //**********************
         private void DisplayMenu()
         {
+            Console.WriteLine();
             Console.WriteLine("What would you like to do?");
             Console.WriteLine("1. Add a new Droid");
             Console.WriteLine("2. Print Droid List");
@@ -295,7 +296,7 @@ namespace cis237_assignment4
                 }
             }
             // If the selection is not a valid number, this exception will be thrown
-            catch (Exception e)
+            catch (Exception)
             {
                 // Set return value to false even though it should already be false
                 returnValue = false;

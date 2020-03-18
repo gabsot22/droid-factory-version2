@@ -39,7 +39,7 @@ namespace cis237_assignment4
         protected decimal materialCost;
 
         protected string color;
-        protected decimal baseCost;
+        //protected decimal baseCost;
         protected decimal totalCost;
 
 
@@ -109,7 +109,7 @@ namespace cis237_assignment4
         {
             return String.Format("{0,-10} {1,-9} {2,-8} {3,-6} {4,-9}",
                 name, type, material, color, CalculateBaseCost().ToString("C"));
-            return name + " " + type + " " + material + " " + color + " " + CalculateBaseCost().ToString("C");
+            //return name + " " + type + " " + material + " " + color + " " + CalculateBaseCost().ToString("C");
         }
 
 
