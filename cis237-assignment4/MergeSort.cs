@@ -8,35 +8,36 @@ namespace cis237_assignment4
 {
     class MergeSort
     {
-        //private static IComparable[] aux = new IComparable[a.length];
-        //public static void Merge(IComparable a, int lo, int mid, int hi)
-        //{
-        //    int k;
-        //    int i = lo;
-        //    int j = mid + 1;
-        //    for (k = lo; k <= hi; k++)
-        //    {
-        //        aux[k] = a[k];
-        //    }
-        //    for (k = lo; k <= hi; k++)
-        //    {
-        //        if (i > mid)
-        //        {
-        //            a[k] = aux[j++];
-        //        }
-        //        else if (j > hi)
-        //        {
-        //            a[k] = aux[i++];
-        //        }
-        //        else if (aux[j] < aux[i])
-        //        {
-        //            a[k] = aux[j++];
-        //        }
-        //        else;
-        //    }
-        //}
 
-        // SECOND TEST
+        private static IComparable[] aux = new IComparable[a.length];
+        public static void Merge(IComparable a, int lo, int mid, int hi)
+        {
+            int k;
+            int i = lo;
+            int j = mid + 1;
+            for (k = lo; k <= hi; k++)
+            {
+                aux[k] = a[k];
+            }
+            for (k = lo; k <= hi; k++)
+            {
+                if (i > mid)
+                {
+                    a[k] = aux[j++];
+                }
+                else if (j > hi)
+                {
+                    a[k] = aux[i++];
+                }
+                else if (aux[j] < aux[i])
+                {
+                    a[k] = aux[j++];
+                }
+                else;
+            }
+        }
+
+        ////SECOND TEST
         //private static IComparable[] aux;
         //public static void Sort(IComparable a)
         //{
@@ -48,7 +49,7 @@ namespace cis237_assignment4
         //    // Base Case
         //    if (hi <= lo)
         //    {
-        //       return;
+        //        return;
         //    }
         //    int mid = lo + (hi - lo) / 2;
         //    Sort(a, lo, mid);
@@ -56,4 +57,7 @@ namespace cis237_assignment4
         //    MergeSort(a, lo, mid, hi);
         //}
     }
+
+
 }
+
