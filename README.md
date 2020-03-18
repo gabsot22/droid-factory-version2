@@ -4,7 +4,7 @@
 
 ## Author
 
-
+Gabe Soto
 
 ## Description
 
@@ -93,11 +93,12 @@ Be sure to think about what the time complexity for the bucket sort will be. Thi
 
 ## Outside Resources Used
 
-
+Youtube and StackOverflow
 
 ## Known Problems, Issues, And/Or Errors in the Program
 
-
+Did not use the GenericQueue class. Queued everything in the Stack class.
+Merge Sorting is not working
 
 ## Assignment 3 Description for reference
 
