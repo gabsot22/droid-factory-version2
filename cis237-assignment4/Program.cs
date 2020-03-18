@@ -148,6 +148,8 @@ namespace cis237_assignment4
                         // Output Sorting Header
                         ui.DisplaySortingHeader();
 
+                        Droid.
+
                         // Merge call
                         droidCollection.SendToMerge();
 
