@@ -67,7 +67,7 @@ namespace cis237_assignment4
                     returnString += droid.ToString() + Environment.NewLine;
                 }
             }
-        
+
             // Return the return string
             return returnString;
         }
@@ -119,33 +119,6 @@ namespace cis237_assignment4
             astromechStackList.Display();
             Console.WriteLine("----------------------------");
 
-            
-            // Pop Droids
-            //foreach (Droid droid in droids)
-            //{
-            //    if (droid != null)
-            //    {
-            //        if (droid.GetType() == typeof(ProtocolDroid))
-            //        {
-            //            protocolStackList.Pop(droid);
-            //            if (droid.GetType() == typeof(UtilityDroid))
-            //            {
-            //                utilityStackList.Pop(droid);
-            //                if (droid.GetType() == typeof(JanitorDroid))
-            //                {
-            //                    janitorStackList.Pop(droid);
-            //                    if (droid.GetType() == typeof(AstromechDroid))
-            //                    {
-            //                        astromechStackList.Pop(droid);
-            //                    }
-            //                }
-            //            }
-            //        }
-            //    }
-            //queueDroids.Enqueue(droid);
-            //Console.WriteLine("Enqueing");
-            //Console.WriteLine(droid);
-            //}
 
             // QUEUE DROIDS IN ORDER OF ASTROMECH, JANITOR, UTILITY, PROTOCOL
             Queue<Droid> queueDroids = new Queue<Droid>();
@@ -167,33 +140,45 @@ namespace cis237_assignment4
                 queueDroids.Enqueue(protocolStackList.Pop());
             }
 
-            //AstromechDroid astromechDroid = astromechStackList.Pop();
-            //while(astromechDroid != null)
-            //{
-            //    queueDroids.Enqueue(astromechDroid);
-            //    astromechDroid = astromechStackList.Pop();
-            //}
+            //MergeSort merge = new MergeSort();
+            //merge.Sort(queueDroids);
 
-            //JanitorDroid janitorDroid = janitorStackList.Pop();
-            //while (janitorDroid != null)
-            //{
-            //    queueDroids.Enqueue(janitorDroid);
-            //    janitorDroid = janitorStackList.Pop();
-            //}
+            int index = 0;
+            // DEQUEUE DROIDS
+            while (queueDroids.Count > 0)
+            {
 
-            //UtilityDroid utilityDroid = utilityStackList.Pop();
-            //while (utilityDroid != null)
-            //{
-            //    queueDroids.Enqueue(utilityDroid);
-            //    utilityDroid = utilityStackList.Pop();
-            //}
+                Console.WriteLine(queueDroids.Dequeue());
+                Console.WriteLine($"Number of Droid's left = {queueDroids.Count}");
+                //Copy dequeue'd droid to exising array with index of 0, then accumulated
+                queueDroids.CopyTo(droids[index]);
+                index++;
+            }
 
-            //ProtocolDroid protocolDroid = protocolStackList.Pop();
-            //while (protocolDroid != null)
-            //{
-            //    queueDroids.Enqueue(protocolDroid);
-            //    protocolDroid = protocolStackList.Pop();
-            //}
+            
+
+
+            // Convert Queue into array
+            //Droid[] categorizedDroids = queueDroids.ToArray();
+
+            // Displays values of new array
+            Console.WriteLine();
+            Console.WriteLine("Categorized array:");
+            PrintDroids(droids);
+
+
+
+            //MergeSort merge = new MergeSort();
+            //merge.Sort(queueDroids);
+
+        }
+        private static void PrintDroids(Array newdroids)
+        {
+            foreach(Droid droid in newdroids)
+            {
+                Console.WriteLine("{0}", newdroids);
+            }
         }
     }
+    
 }
