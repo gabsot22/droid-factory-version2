@@ -1,6 +1,6 @@
 ﻿/* Gabe Soto
  * CIS 237 MW 6:00-8:15pm
- * 2/19/20
+ * 3/18/20
  * */
 using System;
 using System.Collections.Generic;
@@ -14,8 +14,6 @@ namespace cis237_assignment4
     {
         static void Main(string[] args)
         {
-
-
             // Set a constant for the size of the droidCollection
             const int droidCollectionSize = 100;
 
@@ -25,18 +23,12 @@ namespace cis237_assignment4
             // Create an instance of the DroidCollection class
             DroidCollection droidCollection = new DroidCollection(droidCollectionSize);
 
+            // array to hold pre-loaded droids
             droidCollection.AddNewProtocolDroid("C3PO", "Protocol", "Gold", "Gold", 5);
             droidCollection.AddNewUtilityDroid("BD1", "Utility", "Amethyst", "Red", true, true, true);
             droidCollection.AddNewAstromechDroid("R2D2", "Astromech", "Iron", "Blue", true, true, true, true, 1);
             droidCollection.AddNewJanitorDroid("A1Z4", "Janitor", "Iron", "Black", true, true, true, true, true);
             droidCollection.AddNewProtocolDroid("P0L0", "Protocol", "Amethyst", "Purple", 3);
-
-            // array to hold pre-loaded droids
-            //droids[0] = new ProtocolDroid("C3PO", "Protocol", "Gold", "Gold", 5);
-            //droids[1] = new UtilityDroid("BD1", "Utility", "Amethyst", "Red", true, true, true);
-            //droids[2] = new AstromechDroid("R2D2", "Astromech", "Iron", "Blue", true, true, true, true, 1);
-            //droids[3] = new JanitorDroid("A1Z4", "Janitor", "Iron", "Black", true, true, true, true, true);
-            //droids[4] = new ProtocolDroid("P0L0", "Protocol", "Amethyst", "Purple", 3);
 
             // Display the Welcome Message to the user
             ui.DisplayWelcomeGreeting();
@@ -151,12 +143,19 @@ namespace cis237_assignment4
 
                     // Sort by Total Cost 
                     case 4:
-                        MergeSort merge = new MergeSort();
+                        //MergeSort merge = new MergeSort();
 
                         // Output Sorting Header
                         ui.DisplaySortingHeader();
 
+                        // Merge call
                         droidCollection.SendToMerge();
+
+                        // Output Heading
+                        ui.DisplayDroidHeader();
+
+                        // Output New Droids 
+                        ui.Output(droidCollection.ToString());
 
                         break;
                 }

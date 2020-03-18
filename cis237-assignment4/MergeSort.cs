@@ -93,14 +93,14 @@ namespace cis237_assignment4
         */
 
         // This classs hsould not be instantiated
-        private MergeSort() { }
+        //private MergeSort() { }
 
         // stably merge a[lo .. mid] with a[mid+1 ..hi] using aux[lo .. hi]
         private static void merge(IComparable[] a, IComparable[] aux, int lo, int mid, int hi)
         {
             // precondition: a[lo .. mid] and a[mid+1 .. hi] are sorted subarrays
-            isSorted(a, lo, mid);
-            isSorted(a, mid+1, hi);
+            //Sorted(a, lo, mid);
+            //Sorted(a, mid+1, hi);
 
             // copy to aux[]
             for (int k = lo; k <= hi; k++)
@@ -114,12 +114,12 @@ namespace cis237_assignment4
             {
                 if (i > mid) a[k] = aux[j++];
                 else if (j > hi) a[k] = aux[i++];
-                else if (aux[j] < aux[i]) a[k] = aux[j++];
+                //else if (aux[j] < aux[i]) a[k] = aux[j++];
                 else a[k] = aux[i++];
             }
 
             // postcondition: a[lo .. hi] is sorted
-            isSorted(a, lo, hi);
+            //isSorted(a, lo, hi);
         }
 
         // mergesort a[lo..hi] using auxiliary array aux[lo..hi]
@@ -138,8 +138,8 @@ namespace cis237_assignment4
      */
         public static void sort(IComparable[] a)
         {
-            IComparable[] aux = new IComparable[a.length];
-            sort(a, aux, 0, a.length - 1);
+            IComparable[] aux = new IComparable[a.Length];
+            sort(a, aux, 0, a.Length - 1);
             //isSorted(a);
         }
     }

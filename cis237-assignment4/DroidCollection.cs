@@ -152,7 +152,8 @@ namespace cis237_assignment4
 
         public void SendToMerge()
         {
-            droids.DoMergeSort();
+            //MergeSort merge = new MergeSort();
+            MergeSort.sort(droids);
         }
     }
 }
