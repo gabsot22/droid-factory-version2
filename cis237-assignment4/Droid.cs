@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 
 namespace cis237_assignment4
 {
-    abstract class Droid : IDroid
+    // Impliment IComparable
+    public class Droid : IDroid
     {
         //*****************************
         // Constants
@@ -42,6 +43,17 @@ namespace cis237_assignment4
         //protected decimal baseCost;
         protected decimal totalCost;
 
+        // CompareTo Method
+        public int CompareTo(object obj)
+        {
+            if (obj == null) return 1;
+
+            Droid otherDroid = obj as Droid;
+            if (otherDroid != null)
+                return this.totalCost.CompareTo(otherDroid.totalCost);
+            else
+                throw new ArgumentException("Object is not a Droid");
+        }
 
         //****************************
         // Properties

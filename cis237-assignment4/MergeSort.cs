@@ -10,8 +10,9 @@ using System.Threading.Tasks;
 
 namespace cis237_assignment4
 {
-    public static class MergeSort
+    public class MergeSort
     {
+        /*
         public static void DoMergeSort(this Droid[] droids)
         {
             var sortedDroids = MergeSort(droids);
@@ -89,38 +90,95 @@ namespace cis237_assignment4
             result.Add(list.First());
             list.RemoveAt(0);
         }
+        */
+
+        // This classs hsould not be instantiated
+        private MergeSort() { }
+
+        // stably merge a[lo .. mid] with a[mid+1 ..hi] using aux[lo .. hi]
+        private static void merge(IComparable[] a, IComparable[] aux, int lo, int mid, int hi)
+        {
+            // precondition: a[lo .. mid] and a[mid+1 .. hi] are sorted subarrays
+            isSorted(a, lo, mid);
+            isSorted(a, mid+1, hi);
+
+            // copy to aux[]
+            for (int k = lo; k <= hi; k++)
+            {
+                aux[k] = a[k];
+            }
+
+            // merge back to a[]
+            int i = lo, j = mid + 1;
+            for (int k = lo; k <= hi; k++)
+            {
+                if (i > mid) a[k] = aux[j++];
+                else if (j > hi) a[k] = aux[i++];
+                else if (aux[j] < aux[i]) a[k] = aux[j++];
+                else a[k] = aux[i++];
+            }
+
+            // postcondition: a[lo .. hi] is sorted
+            isSorted(a, lo, hi);
+        }
+
+        // mergesort a[lo..hi] using auxiliary array aux[lo..hi]
+        private static void sort(IComparable[] a, IComparable[] aux, int lo, int hi)
+        {
+            if (hi <= lo) return; // base case
+            int mid = lo + (hi - lo) / 2;
+            sort(a, aux, lo, mid); // left half
+            sort(a, aux, mid + 1, hi); // right half
+            merge(a, aux, lo, mid, hi); // merge and keep sorted
+        }
+
+        /**
+     * Rearranges the array in ascending order, using the natural order.
+     * @param a the array to be sorted
+     */
+        public static void sort(IComparable[] a)
+        {
+            IComparable[] aux = new IComparable[a.length];
+            sort(a, aux, 0, a.length - 1);
+            //isSorted(a);
+        }
     }
 }
 
+        //private static IComparable[] aux = new IComparable[.length];
+        //public static void Merge(IComparable a, IComparable[] aux, int lo, int mid, int hi)
+        //{
+        //    int k;
+        //    int i = lo;
+        //    int j = mid + 1;
+        //    for (k = lo; k <= hi; k++)
+        //    {
+        //        aux[k] = a[k];
+        //    }
+        //    for (k = lo; k <= hi; k++)
+        //    {
+        //        if (i > mid)
+        //        {
+        //            a[k] = aux[j++];
+        //        }
+        //        else if (j > hi)
+        //        {
+        //            a[k] = aux[i++];
+        //        }
+        //        else if (aux[j] < aux[i])
+        //        {
+        //            a[k] = aux[j++];
+        //        }
+        //        else;
+        //    }
 
-//private static IComparable[] aux = new IComparable[a.length];
-//public static void Merge(IComparable a, IComparable[] aux, int lo, int mid, int hi)
-//{
-//    int k;
-//    int i = lo;
-//    int j = mid + 1;
-//    for (k = lo; k <= hi; k++)
-//    {
-//        aux[k] = a[k];
-//    }
-//    for (k = lo; k <= hi; k++)
-//    {
-//        if (i > mid)
-//        {
-//            a[k] = aux[j++];
-//        }
-//        else if (j > hi)
-//        {
-//            a[k] = aux[i++];
-//        }
-//        else if (aux[j] < aux[i])
-//        {
-//            a[k] = aux[j++];
-//        }
-//        else;
-//    }
 
-//}
+
+
+
+        //}
+
+
 
 //// mergesort a[lo..hi] using auxiliary array aux[lo..hi]
 //private static void Sort(IComparable[] a, IComparable[] aux, int lo, int hi)
